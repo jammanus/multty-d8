@@ -5,10 +5,17 @@
     "license": "GPL-2.0-or-later",
     "require": {
         "composer/installers": "^1.0.24",
+        "drupal/core-composer-scaffold": "^8.9",
+        "drupal/core-project-message": "^8.9",
+        "drupal/core-recommended": "^8.9",
+        "drupal/core-vendor-hardening": "^8.9",
         "wikimedia/composer-merge-plugin": "^1.4"
     },
-    "replace": {
-        "drupal/core": "^8.6"
+    "require-dev": {
+        "drupal/core-dev": "^8.9"
+    },
+    "conflict": {
+        "drupal/drupal": "*"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -24,6 +31,11 @@
             "You can read more about this composer repository at:",
             "https://www.drupal.org/node/2718229"
         ],
+        "drupal-scaffold": {
+            "locations": {
+                "web-root": "./"
+            }
+        },
         "merge-plugin": {
             "include": [
                 "core/composer.json"
@@ -33,13 +45,32 @@
             "merge-extra": false
         },
         "installer-paths": {
-            "core": ["type:drupal-core"],
-            "modules/contrib/{$name}": ["type:drupal-module"],
-            "profiles/contrib/{$name}": ["type:drupal-profile"],
-            "themes/contrib/{$name}": ["type:drupal-theme"],
-            "drush/contrib/{$name}": ["type:drupal-drush"],
-            "modules/custom/{$name}": ["type:drupal-custom-module"],
-            "themes/custom/{$name}": ["type:drupal-custom-theme"]
+            "installer-paths": {
+                "core": [
+                    "type:drupal-core"
+                ],
+                "libraries/{$name}": [
+                    "type:drupal-library"
+                ],
+                "modules/contrib/{$name}": [
+                    "type:drupal-module"
+                ],
+                "profiles/contrib/{$name}": [
+                    "type:drupal-profile"
+                ],
+                "themes/contrib/{$name}": [
+                    "type:drupal-theme"
+                ],
+                "drush/contrib/{$name}": [
+                    "type:drupal-drush"
+                ],
+                "modules/custom/{$name}": [
+                    "type:drupal-custom-module"
+                ],
+                "themes/custom/{$name}": [
+                    "type:drupal-custom-theme"
+                ]
+            }
         }
     },
     "autoload": {
